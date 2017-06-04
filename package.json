@@ -1,0 +1,27 @@
+{
+  "name": "topthreads",
+  "version": "1.0.0",
+  "description": "Telegram bot showing top threads on chosen 2ch.hk board",
+  "main": "main.js",
+  "scripts": {
+    "start": "node --harmony main.js"
+  },
+  "keywords": [
+    "telegram",
+    "node",
+    "bot"
+  ],
+  "author": "Vladislav Kamenev",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "node-telegram-bot-api": "^0.27.1",
+    "pg": "^6.2.3",
+    "request-promise": "^4.2.1",
+    "sequelize": "^3.30.4",
+    "sqlite3": "^3.1.8"
+  },
+  "engines": {
+    "node": "8.0.0"
+  }
+}
