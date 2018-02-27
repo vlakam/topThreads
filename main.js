@@ -24,10 +24,6 @@ bot.getMe().then(function (me) {
     bot.me = me;
 });
 
-setInterval(function () {
-    request('https://topthreads.herokuapp.com');
-}, 300000);
-
 models.sequelize.sync().then(function () {
     bot.on('message', onNewMessage);
 }, function (error) {
@@ -108,6 +104,7 @@ async function getTopThreads(msg) {
         console.log(tops);
         return bot.sendMessage(msg.chat.id, tops, {
             reply_to_message_id: msg.message_id,
+            disable_web_page_preview: true,
             parse_mode: 'HTML'
         });
     });
@@ -130,6 +127,10 @@ async function getBoardTops(board) {
 function threadToString(board, thread) {
     let string = '';
     string += '<a href="https://2ch.hk/' + board +'/res/' + thread.num + '.html">' + thread.subject + '</a>\n';
-    string += emojiEyes + thread.views + ' ' + emojiBaloon + thread.posts_count + ' ' + emojiBar + thread.score + '\n';
+    string += emojiEyes + roundStat(thread.views) + ' ' + emojiBaloon + roundStat(thread.posts_count) + ' ' + emojiBar + roundStat(thread.score) + '\n';
     return string;
+}
+
+function roundStat(num) {
+    return Math.round(num * 100) / 100;
 }
