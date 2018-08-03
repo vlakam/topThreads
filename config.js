@@ -1,3 +1,3 @@
 module.exports.config = {
-    token: '<TOKEN>'
+    token: process.env.TELEGRAMTOKEN
 };
